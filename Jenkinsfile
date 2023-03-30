@@ -14,7 +14,7 @@ node {
         stage('Deploy') { 
                 sh './jenkins/scripts/deliver.sh'
                 input message: 'Lanjutkan ke tahap Deploy?(Klik "Proceed" untuk mengakhiri)'
-                sh 'sleep 1m' 
+                sleep 60 
                 sh './jenkins/scripts/kill.sh' 
         }
 
