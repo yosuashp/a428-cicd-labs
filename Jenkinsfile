@@ -11,14 +11,16 @@ node {
                 sh './jenkins/scripts/test.sh' 
         }
 
-        stage('Deploy') { 
-                sh './jenkins/scripts/deliver.sh'
+        stage('Manual Approval') { 
                 input message: 'Lanjutkan ke tahap Deploy?(Klik "Proceed" untuk mengakhiri)'
-                echo "60 seconds for test before the app shutdown"
-                sleep 60 
-                sh './jenkins/scripts/kill.sh' 
         }
 
+        stage('Deploy') { 
+                sh './jenkins/scripts/deliver.sh'
+                echo "60 seconds for test before the app shutdown"
+                sleep 60
+                sh './jenkins/scripts/kill.sh'
+        }
     }
 
 }
